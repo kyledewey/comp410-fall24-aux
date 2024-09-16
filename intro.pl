@@ -14,6 +14,42 @@ foo(7, 4). % fact - arity 2
 isName(alice). % alice and bob are atoms; MUST start with lowercase
 isName(bob).
 
-areEqual(X, X).
+% procedure: areEqual/2
+% areEqual(X, X).
+areEqual(X, Z) :- % rule
+    X = Y,
+    Y = Z.
 
-% for next time: proper nondeterminism and unification
+servedWarm(pizza).
+servedWarm(burgers).
+servedWarm(burrito).
+
+% aliceLikes/1
+aliceLikes(pizza).
+aliceLikes(burgers).
+aliceLikes(burrito).
+aliceLikes(yogurt).
+
+% bobLikes/1
+bobLikes(pizza).
+bobLikes(burgers).
+bobLikes(salad).
+bobLikes(milk).
+
+% likes/2
+likes(alice, pizza).
+likes(alice, burgers).
+likes(alice, burrito).
+likes(alice, yogurt).
+likes(bob, pizza).
+likes(bob, burgers).
+likes(bob, salad).
+likes(bob, milk).
+likes(bill, F) :-
+    servedWarm(F).
+likes(janet, X) :-
+    likes(bob, X),
+    likes(alice, X).
+
+% for next time: properly explain execution (and why false is at the end),
+% number 8, different ways of writing 8
