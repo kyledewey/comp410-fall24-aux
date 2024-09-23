@@ -50,6 +50,17 @@ likes(bill, F) :-
 likes(janet, X) :-
     likes(bob, X),
     likes(alice, X).
+likes(mel, Food) :-
+    likes(janet, Food).
+likes(mel, yogurt).
+
+withinRange0And10(X) :-
+    0 =< X,
+    X =< 10.
+
+withinRange(Low, X, High) :-
+    Low =< X,
+    X =< High.
 
 % for next time: properly explain execution (and why false is at the end),
 % number 8, different ways of writing 8
