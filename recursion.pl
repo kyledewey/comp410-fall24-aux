@@ -30,8 +30,15 @@ factorial(N, Res) :-
     factorial(MinusOne, MinusOneResult), % MinusOneResult = factorial(MinusOne)
     Res is N * MinusOneResult.
 
+%% myBetween(Low, High, Res) :-
+%%     Low =< High,
+%%     Res = Low.
+
+myBetween(Low, High, Low) :-
+    Low =< High.
 myBetween(Low, High, Res) :-
     Low =< High,
-    Res is Low.
+    Skip is Low + 1,
+    myBetween(Skip, High, Res).
 
-% For next time: myBetween recursive case
+

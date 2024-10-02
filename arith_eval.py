@@ -37,6 +37,7 @@ def evaluate(node):
         return l + r
         #return evaluate(node.left) + evaluate(node.right)
     elif isinstance(node, Multiply):
-        return evaluate(node.left) * evaluate(node.right)
+        return (evaluate(node.left) *
+                evaluate(node.right))
     elif isinstance(node, UnaryMinus):
         return -evaluate(node.child)
