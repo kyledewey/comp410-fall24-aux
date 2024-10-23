@@ -53,7 +53,7 @@ sublist([_|Tail], X) :-
 % }
 myLength([], 0).
 myLength([_|Tail], Len) :-
-    myLength(Tail, SubLen),
+    myLength(Tail, SubLen), % NOT tail recursive - O(n) stack space
     Len is 1 + SubLen.
 
 % myLengthAccum(List, LengthOfList)
@@ -64,7 +64,7 @@ myLengthAccum(List, Len) :-
 myLengthAccum([], Accum, Accum).
 myLengthAccum([_|Tail], Accum, Len) :-
     NewAccum is Accum + 1,
-    myLengthAccum(Tail, NewAccum, Len). % tail recursive
+    myLengthAccum(Tail, NewAccum, Len). % tail recursive - O(1) stack space
 
 % Tail-call optimization / tail recursion optimization
 % -O(n) stack space usage -> O(1)
