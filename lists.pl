@@ -19,11 +19,23 @@ myAppend([Head|Tail], List, [Head|Rest]) :-
 %   for (int index = 0; index < arr.length; index++) {
 %     retval = retval + arr[index];
 %   }
+%   return retval;
 % }
 sumAll([], 0).
 sumAll([Head|Tail], Sum) :-
     sumAll(Tail, X),
     Sum is X + Head.
+
+sumAllAccum(List, Sum) :-
+    sumAllAccum(List, 0, Sum).
+
+% sumAllAccum(List, CurrentAccumulator, Result)
+sumAllAccum([], Accum, Sum) :-
+    Sum = Accum.
+sumAllAccum([Head|Tail], Accum, Sum) :-
+    NewAccum is Head + Accum,
+    sumAllAccum(Tail, NewAccum, Sum).
+
 
 sublist([], []).
 sublist([Head|Tail], [Head|X]) :-
@@ -52,7 +64,21 @@ myLengthAccum(List, Len) :-
 myLengthAccum([], Accum, Accum).
 myLengthAccum([_|Tail], Accum, Len) :-
     NewAccum is Accum + 1,
-    myLengthAccum(Tail, NewAccum, Len).
+    myLengthAccum(Tail, NewAccum, Len). % tail recursive
 
 % Tail-call optimization / tail recursion optimization
 % -O(n) stack space usage -> O(1)
+
+myReverse(List, ReverseList) :-
+    myReverse(List, [], ReverseList).
+
+% myReverse(InputList, Accumulator, OutputList)
+%% myReverse([], Accum, ReverseList) :-
+%%     ReverseList = Accum.
+myReverse([], Accum, Accum).
+myReverse([Head|Tail], Accum, Reverse) :-
+    NewAccum = [Head|Accum],
+    myReverse(Tail, NewAccum, Reverse).
+
+% Monday: recap myReverse
+    
