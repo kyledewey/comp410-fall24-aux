@@ -80,5 +80,5 @@ myReverse([Head|Tail], Accum, Reverse) :-
     NewAccum = [Head|Accum],
     myReverse(Tail, NewAccum, Reverse).
 
-% Monday: recap myReverse
+
     
