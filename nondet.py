@@ -29,3 +29,39 @@ def nats():
         yield value
         value += 1
         
+def printAllMyNumber():
+    for x in myNumber():
+        print(x)
+
+def printPairsMyNumber():
+    for a in myNumber():
+        for b in myNumber():
+            print(a)
+            print(b)
+            
+def myNumber():
+    yield 0
+    yield 1
+    yield 2
+
+def makePair():
+    for a in myNumber():
+        for b in myNumber():
+            yield (a, b)
+
+class And:
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+    def __str__(self):
+        return "and({}, {})".format(str(self.left),
+                                    str(self.right))
+
+# exp ::= true | false | and(exp, exp)
+def exp():
+    yield True
+    yield False
+    for e1 in exp():
+        for e2 in exp():
+            yield And(e1, e2)
